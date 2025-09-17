@@ -24,6 +24,10 @@ class Program
 
         // Dependency injection setup - following Dependency Inversion Principle
         IContactService contactService = new ContactService();
+        
+        // Initialize with sample data for demonstration
+        SampleDataService.InitializeSampleData(contactService);
+        
         var menuService = new MenuService(contactService);
 
         try
