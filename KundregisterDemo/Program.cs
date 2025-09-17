@@ -7,5 +7,4 @@ Console.ForegroundColor= ConsoleColor.White;
 Console.Clear();
 Console.WriteLine("Hello, Kundregister 🐐!");
 
-
-
+Menu MenuClass = new Menu();
