@@ -1,2 +1,4 @@
 # Demorepo
-Demo av ett repo
+
+Vi ska skapa ett projekt tillsammans där vi ska hålla koll på ett kundregister
+
