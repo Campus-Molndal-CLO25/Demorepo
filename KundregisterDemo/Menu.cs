@@ -35,6 +35,10 @@
             {
                 _customers.AddCustomer();
             }
+            else if (input == 3)
+            {
+                _customers.EditCustomer();
+            }
 
         }
     }
