@@ -39,6 +39,10 @@
             {
                 _customers.EditCustomer();
             }
+            else if (input == 4)
+            {
+                _customers.DeleteCustomer();
+            }
 
         }
     }

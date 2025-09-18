@@ -19,6 +19,13 @@ internal class Customers
         _customers.Add(new Person() { Name = "Magnus Olsson", Email = "magnus@olsson.org" });
         _customers.Add(new Person() { Name = "Lena Gustafsson", Email = "lena.gustafsson@work.com" });
         _customers.Add(new Person() { Name = "David Ström", Email = "david.strom@mail.se" });
+        _customers.Add(new Person("Marcus Medina"));
+        _customers.Add(new Person("hello@marcusmedina.pro"));
+        _customers.Add(new Person(email: "kalle@anka.se"));
+
+        Person kanin = new Person { Name = "Pelle Kanin", Email = "pelle@kanin.se" };
+        _customers.Add(new Person(kanin));
+
     }
 
     public void ListCustomers(bool wait = true) // Helt genererad av Claude
@@ -115,6 +122,7 @@ internal class Customers
             UpdateCustomer(choice, name, email);
         }
 
+
         ListCustomers();
     }
 
@@ -132,5 +140,24 @@ internal class Customers
         Console.Clear();
         Console.WriteLine("Namn  : " + customer.Name);
         Console.WriteLine("Epost : " + customer.Email);
+    }
+
+    internal void DeleteCustomer()
+    {
+        // Select customer to delete
+        ListCustomers(false);
+        Console.WriteLine("Vem vill du radera?");
+        int toDelete = InputHelper.GetMenuChoice(_customers.Count) - 1;
+
+        // Ask to be sure
+        bool isOK = InputHelper.YesNoQuestion("Är du säker på att du vill radera " + _customers[toDelete].Name);
+
+        // Crush Kill Destroy! 
+        if (isOK)
+        {
+            _customers.RemoveAt(toDelete);
+            ListCustomers();
+        }
+
     }
 }
