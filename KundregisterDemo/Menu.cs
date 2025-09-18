@@ -7,6 +7,8 @@
 
     public void ShowMenu()
     {
+        Customers _customers = new Customers();
+
         while (true)
         {
             Console.Clear();
@@ -24,6 +26,14 @@
             if (input == 5)
             {
                 return;
+            }
+            else if (input == 1)
+            {
+                _customers.ListCustomers();
+            }
+            else if (input == 2)
+            {
+                _customers.AddCustomer();
             }
 
         }
