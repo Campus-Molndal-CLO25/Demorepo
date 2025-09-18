@@ -1,4 +1,5 @@
 ﻿
+
 internal class Customers
 {
     private List<Person> _customers; // deklarerar
@@ -20,7 +21,7 @@ internal class Customers
         _customers.Add(new Person() { Name = "David Ström", Email = "david.strom@mail.se" });
     }
 
-    public void ListCustomers(bool wait=true) // Helt genererad av Claude
+    public void ListCustomers(bool wait = true) // Helt genererad av Claude
     {
         Console.Clear();
         Console.SetCursorPosition(0, 0);
@@ -94,10 +95,42 @@ internal class Customers
     {
         // 1 - Ta reda på vem man vill editera
         ListCustomers(false);
-        Console.WriteLine("Vem vill du editera");
+        Console.WriteLine("Vem vill du editera?");
+        int choice = InputHelper.GetMenuChoice(_customers.Count) - 1;
+
         // 2 - editera
+        PrintCustomer(choice);
+        Console.WriteLine("Skriv in dina ändringar:");
+        int pos = Console.CursorTop;
+
+        string name = InputHelper.AskString("Namn  : ", pos + 1);
+        string email = InputHelper.AskEmail("Epost : ", pos + 2);
+
         // 3 - Fråga om ändringar är OK
+        bool isOK = InputHelper.YesNoQuestion("Är du säker på detta?");
+
         // 4 - Spara
-        Console.ReadKey();
+        if (isOK)
+        {
+            UpdateCustomer(choice, name, email);
+        }
+
+        ListCustomers();
+    }
+
+    private void UpdateCustomer(Index index, string name, string email)
+    {
+        Person customer = _customers[index]; // referenstyp
+        customer.Name = name;
+        customer.Email = email;
+        // SaveChanges() för att spara i en databas
+    }
+
+    private void PrintCustomer(int index)
+    {
+        Person customer = _customers[index];
+        Console.Clear();
+        Console.WriteLine("Namn  : " + customer.Name);
+        Console.WriteLine("Epost : " + customer.Email);
     }
 }

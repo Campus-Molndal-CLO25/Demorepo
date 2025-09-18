@@ -1,6 +1,7 @@
 ﻿
 
 
+
 internal class InputHelper
 {
     internal static string AskEmail(string prompt, int position)
@@ -47,8 +48,8 @@ internal class InputHelper
 
             string result = input.Trim(); // Tar bort mellanslag i början och slutet
             if (result != "")
-            { 
-                return result; 
+            {
+                return result;
             }
         }
     }
@@ -61,10 +62,35 @@ internal class InputHelper
             string? input = Console.ReadLine();
 
             int.TryParse(input, out var value);
-            if (value<1 || value>max)
+            if (value < 1 || value > max)
                 Console.WriteLine("Felaktigt val dummer!");
             else
                 return value;
+        }
+    }
+
+    internal static bool YesNoQuestion(string prompt)
+    {
+        while (true)
+        {
+            Console.Write(prompt);
+            string? input = Console.ReadLine();
+
+            string result = input.Trim(); // Tar bort mellanslag i början och slutet
+            if (result == "")
+            {
+                continue;
+            }
+
+            string firstLetter = result.Substring(0, 1).ToLower();
+            if (firstLetter == "j" || firstLetter == "y")
+            {
+                return true;
+            }
+            else if (firstLetter == "n")
+            {
+                return false;
+            }
         }
     }
 }
